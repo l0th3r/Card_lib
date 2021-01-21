@@ -1,3 +1,7 @@
+/*
+* THIS FILE IS FOR DEBUG AND TEST PURPOSE
+*/
+
 #include "includes.h"
 
 int get_random(int end)
@@ -11,12 +15,13 @@ int get_random(int end)
 int main(int ac, char** av)
 {
 	int i = 0;
+	Deck_t test = create_classic_32();
 
-	Deck_t test = create_deck(52, 1, 13);
+	srand(time(NULL));
 
 	while(i < test.size + test.j_nb)
 	{
-		printf("%s\n", get_card(test.pile[i]));
+		printf("%d = %s\n", i, get_card(test.pile[i]));
 		i++;
 	}
 

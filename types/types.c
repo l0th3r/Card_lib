@@ -16,10 +16,11 @@ Card_t create_card(int id, int suit, int position)
 
 /* create a deck */
 /* return a classic deck of card struct (Deck_t) */
-Deck_t create_deck(int length, int joker_len, int suit_length)
+Deck_t create_deck(int length, int joker_len, int gap_start, int gap_end)
 {
 	int i = 0;
 	int j = 0;
+	int k = 0;
 
 	Deck_t deck;
 
@@ -29,12 +30,26 @@ Deck_t create_deck(int length, int joker_len, int suit_length)
 	if(deck.pile)
 	{
 		/* create cards */
-		while(i < length)
-		{
-			deck.pile[i] = create_card(i, i / suit_length, i % suit_length);
-			i++;
+		/* loop through suits */
+		while(j < 4)
+		{	
+			/* loop through each suit */
+			k = 0;
+			while(k < 13)
+			{
+				/* only if the card is not in the gap */
+				if(k < gap_start - 1 || k > gap_end - 1)
+				{
+					deck.pile[i] = create_card(i, j, k);
+					i++;
+				}
+				k++;
+			}
+			j++;
 		}
+
 		/* create joker cards */
+		j = 0;
 		while(j < joker_len)
 		{
 			deck.pile[i] = create_card(i, 4, j);
@@ -48,6 +63,15 @@ Deck_t create_deck(int length, int joker_len, int suit_length)
 	return deck;
 }
 
+Deck_t create_classic_52()
+{
+	return create_deck(52, 0, 14, -1);
+}
+
+Deck_t create_classic_32()
+{
+	return create_deck(32, 0, 2, 6);
+}
 
 /* create a list*/
 List_t create_list()

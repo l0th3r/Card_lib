@@ -44,7 +44,9 @@ void dest_hand(Hand_t target);
 
 /* functions */
 Card_t create_card(int id, int suit, int position);
-Deck_t create_deck(int length, int joker_len, int suit_length);
+Deck_t create_deck(int length, int joker_len, int gap_start, int gap_end);
+Deck_t create_classic_52();
+Deck_t create_classic_32();
 List_t create_list();
 
 #endif
