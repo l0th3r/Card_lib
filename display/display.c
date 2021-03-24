@@ -51,6 +51,8 @@ char* get_card_name(Card_t target)
 		sprintf(str, "Hidden Card");
 	else if(suit == 4)
 		sprintf(str, "Joker");
+	else if(suit == -1)
+		sprintf(str, "Empty card");
 	else
 		sprintf(str, "%s of %s", str_val, suit_to_display);
 
@@ -75,16 +77,16 @@ char* get_card(Card_t target)
 	switch(suit)
 	{
 		case 0:
-			strcpy(suit_to_display, "♣");
+			strcpy(suit_to_display, "C"); /* ♣ */
 			break;
 		case 1:
-			strcpy(suit_to_display, "♦");
+			strcpy(suit_to_display, "D"); /* ♦ */
 			break;
 		case 2:
-			strcpy(suit_to_display, "♥");
+			strcpy(suit_to_display, "H"); /* ♥ */
 			break;
 		case 3:
-			strcpy(suit_to_display, "♠");
+			strcpy(suit_to_display, "S"); /* ♠ */
 			break;
 	}
 
@@ -113,6 +115,8 @@ char* get_card(Card_t target)
 
 	if(hidden == 1)
 		sprintf(str, "|  ??  |");
+	else if(suit == -1)
+		sprintf(str, "|      |");
 	else if(suit == 4)
 		sprintf(str, "|  JO  |");
 	else
